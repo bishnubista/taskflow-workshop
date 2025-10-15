@@ -1,196 +1,327 @@
-# Exercise: Enhance Labels with Cursor Composer
+# Exercise: Build Analytics Dashboard with Claude Code
 
-**Time:** 10 minutes
-**Tool:** Cursor Composer (CMD+I)
-**Difficulty:** Medium
+**Time:** 20 minutes
+**Tool:** Claude Code (Plan Mode + Context Engineering)
+**Difficulty:** Advanced
 
 ## Context
 
-You have a working Labels feature that allows creating, editing, and deleting labels. However, the UI could be more polished and the labels aren't yet integrated with tasks. Let's use Cursor Composer to enhance it across multiple files!
+You have a working TaskFlow app with labels. Now let's add an analytics dashboard to show task statistics, label usage, and assignee distribution. This exercise demonstrates Claude Code's planning and autonomous implementation capabilities.
 
 ## Your Task
 
-Choose ONE of these enhancements to implement using Cursor Composer:
+Implement the Analytics Dashboard feature described in `PLAN.md` using Claude Code's plan mode and context engineering.
 
-### Option A: Add Label Filtering to Tasks (Recommended)
-Add the ability to filter tasks by label in the TaskList component:
-1. Add a label filter dropdown above the task list
-2. Update the backend API to support `?label=label-id` query parameter
-3. Wire up the filter to refresh tasks when changed
+## Why Claude Code?
 
-### Option B: Show Labels on Tasks
-Display labels as colored badges on each task:
-1. Add a label selector to TaskForm (multi-select)
-2. Display selected labels on each task in TaskList
-3. Fetch label details and show as colored badges
+This is perfect for Claude Code because:
+- ✅ Complex feature with multiple components
+- ✅ Requires understanding of existing architecture
+- ✅ Benefits from phase-by-phase implementation
+- ✅ Needs coordination across backend and frontend
+- ✅ Clear plan already exists
 
-### Option C: Add Label Presets
-Add common label presets for quick creation:
-1. Add a "Quick Add" section with preset buttons (Bug, Feature, Enhancement)
-2. Clicking a preset creates the label with predefined colors
-3. Update backend if needed for bulk label creation
+## Prerequisites
 
-## Why Cursor Composer?
-
-This is perfect for Composer because:
-- ✅ Changes span multiple files (frontend + backend)
-- ✅ Components need to be coordinated
-- ✅ Clear requirements with defined scope
+Before starting:
+1. Read `PLAN.md` - understand the feature requirements
+2. Read `.claude/CONTEXT.md` - see project conventions
+3. Make sure both servers are running
 
 ## Step-by-Step Guide
 
-### Step 1: Open Composer
-Press `CMD+I` (Mac) or `CTRL+I` (Windows/Linux)
-- This opens the floating Composer window
-- Or use `CMD+Shift+I` for full-screen mode
+### Step 1: Start Claude Code
 
-### Step 2: Write Your Prompt
-
-For **Option A** (Label Filtering):
-```
-Add label filtering to the task list:
-1. Add a dropdown in TaskList.jsx to select a label
-2. Update backend GET /api/tasks to accept ?label=label-id query parameter
-3. Filter tasks by the selected label_ids array
-4. Show "All Labels" option to clear the filter
-5. Fetch labels list to populate the dropdown
+Open Claude Code in your terminal:
+```bash
+# If not installed, see: https://claude.com/claude-code
+claude
 ```
 
-For **Option B** (Show Labels on Tasks):
-```
-Show labels on tasks as colored badges:
-1. Add label selector (checkboxes) to TaskForm.jsx
-2. Include label_ids when creating tasks
-3. In TaskList.jsx, fetch label details for each task
-4. Display labels as colored badges below task title
-5. Use the same badge styling from LabelManager
-```
+Or use the Claude Code VS Code extension.
 
-For **Option C** (Label Presets):
+### Step 2: Review the Plan
+
+In Claude Code, ask:
 ```
-Add quick-add label presets to LabelManager:
-1. Add a "Quick Add" section with 3 preset buttons above the form
-2. Presets: Bug (red #ef4444), Feature (blue #3b82f6), Enhancement (green #10b981)
-3. Clicking a preset creates the label immediately
-4. Show feedback when preset is added
-5. Hide presets that already exist
+Read PLAN.md and review the analytics dashboard feature.
+Is the plan feasible? Any suggestions before I start implementation?
 ```
 
-### Step 3: Review Composer's Plan
-Composer will show you:
-- Which files it will modify
-- What changes it will make to each file
-- A preview of the code changes
+**What Claude does:**
+- Reads PLAN.md
+- Reads .claude/CONTEXT.md automatically
+- Analyzes existing codebase
+- Identifies potential issues
+- Suggests improvements
 
-**Important:** Read through the proposed changes!
+**Expected response:**
+Claude should confirm feasibility and may suggest:
+- Additional error handling
+- Edge cases to consider
+- Better data structures
+- Missing validation
 
-### Step 4: Accept or Modify
-- Click **"Accept All"** to apply all changes
-- Or click individual files to accept/reject specific changes
-- You can add follow-up prompts if needed
+### Step 3: Implement Phase 1 (Backend)
 
-### Step 5: Test It
-1. Make sure both backend and frontend are running
-2. Test the new feature:
-   - For Option A: Try filtering tasks by label
-   - For Option B: Add labels to a task and see them displayed
-   - For Option C: Quick-add a preset label
-3. Fix any issues with follow-up Composer prompts
+Ask Claude Code:
+```
+Implement Phase 1 from PLAN.md: Backend Analytics API.
+Follow the conventions in .claude/CONTEXT.md.
+Create the analytics route and register it in the backend.
+```
+
+**What Claude does:**
+- Creates `backend/src/routes/analytics.js`
+- Implements statistics calculations
+- Adds validation and error handling
+- Updates `backend/src/index.js` to register route
+- Follows existing code patterns
+
+**Review the changes:**
+- Check the analytics route
+- Verify data calculations
+- Test the endpoint manually
+
+### Step 4: Test Phase 1
+
+Ask Claude Code:
+```
+Test the analytics API endpoint. Start the backend server if needed,
+make a request to /api/analytics, and verify the response format.
+```
+
+**What Claude does:**
+- Can start the backend server
+- Makes test requests
+- Validates response structure
+- Reports any errors
+
+**Manual verification:**
+```bash
+# Or test manually
+curl http://localhost:3000/api/analytics
+```
+
+### Step 5: Implement Phase 2 (Frontend)
+
+Ask Claude Code:
+```
+Implement Phase 2 from PLAN.md: Analytics Dashboard Component.
+Create the Analytics.jsx component with all three sections.
+Use the styling patterns from existing components.
+```
+
+**What Claude does:**
+- Creates `frontend/src/components/Analytics.jsx`
+- Implements all sub-sections (overview, labels, assignees)
+- Handles loading/error states
+- Matches existing component styles
+- Uses inline CSS following project conventions
+
+**Review the component:**
+- Check state management
+- Verify API integration
+- Review styling
+
+### Step 6: Implement Phase 3 (Integration)
+
+Ask Claude Code:
+```
+Implement Phase 3 from PLAN.md: Integrate Analytics into App.jsx.
+Add the Analytics component to the main app.
+Update the branch banner text.
+```
+
+**What Claude does:**
+- Updates `App.jsx`
+- Imports Analytics component
+- Updates branch banner
+- Positions component appropriately
+
+### Step 7: Test End-to-End
+
+Ask Claude Code:
+```
+Run both servers and test the analytics dashboard end-to-end.
+Create some test data if needed, then verify all statistics display correctly.
+```
+
+**What Claude does:**
+- Starts both servers
+- May create test data
+- Verifies dashboard renders
+- Checks data accuracy
+- Reports any issues
+
+**Manual verification:**
+1. Open http://localhost:5173
+2. Create a few tasks with labels
+3. Assign tasks to users
+4. Complete some tasks
+5. Check analytics dashboard updates
 
 ## Expected Result
 
-### Option A: Label Filtering
-```
-┌─────────────────────────────────────┐
-│ Filter by: [All Labels ▼]          │ ← New dropdown
-└─────────────────────────────────────┘
+You should see:
 
-Tasks matching selected label shown below...
 ```
-
-### Option B: Labels on Tasks
-```
-┌─────────────────────────────────────┐
-│ Buy groceries                       │
-│ [Bug] [Urgent]                      │ ← Colored badges
-│ Assigned: Sarah  |  Due: Oct 20    │
-└─────────────────────────────────────┘
-```
-
-### Option C: Label Presets
-```
-┌─────────────────────────────────────┐
-│ Quick Add: [Bug] [Feature] [Enhancement] │ ← Preset buttons
-└─────────────────────────────────────┘
+┌────────────────────────────────────────────────────┐
+│ Analytics Dashboard                    [Refresh]   │
+├────────────────────────────────────────────────────┤
+│ Task Overview                                      │
+│ ┌──────┐  ┌──────┐  ┌──────┐  ┌──────┐          │
+│ │Total │  │To Do │  │In Pr │  │Done  │          │
+│ │  15  │  │   5  │  │   3  │  │   7  │          │
+│ └──────┘  └──────┘  └──────┘  └──────┘          │
+│                                                    │
+│ Progress: ███████████████░░░░░ 47%               │
+├────────────────────────────────────────────────────┤
+│ Label Usage                                        │
+│ • Bug (8 tasks)                                   │
+│ • Feature (4 tasks)                               │
+│ • Enhancement (3 tasks)                           │
+├────────────────────────────────────────────────────┤
+│ By Assignee                                        │
+│ • Sarah Johnson - 6 tasks                         │
+│ • Mike Chen - 4 tasks                             │
+│ • Unassigned - 5 tasks                            │
+└────────────────────────────────────────────────────┘
 ```
 
 ## Common Issues
 
-### Issue 1: Composer Changes Too Many Files
-**Fix:** Be more specific in your prompt. Mention exact file names:
+### Issue 1: Claude Doesn't Follow Existing Patterns
+**Cause:** Context file missing or unclear
+**Fix:** Update `.claude/CONTEXT.md` with specific examples:
 ```
-Only modify TaskList.jsx and backend/src/routes/tasks.js
-```
-
-### Issue 2: Backend Changes Don't Include Validation
-**Fix:** Add to your prompt:
-```
-Add proper validation and error handling in the backend
+Add example code patterns to .claude/CONTEXT.md showing
+the exact inline styling we use for components.
 ```
 
-### Issue 3: Frontend Doesn't Handle Errors
-**Fix:** Follow up with:
+### Issue 2: Analytics Returns Empty Data
+**Cause:** No tasks/labels in the system yet
+**Fix:** Ask Claude to create test data:
 ```
-Add error handling in the frontend for when the API call fails
+Create a few test tasks with labels to populate the analytics dashboard.
 ```
 
-### Issue 4: Changes Break Existing Functionality
-**Fix:** Use git to see what changed:
-```bash
-git diff
+### Issue 3: Frontend Doesn't Update After Backend Changes
+**Cause:** API endpoint not properly integrated
+**Fix:** Ask Claude to debug:
 ```
-Then ask Composer to fix specific issues.
+The analytics component isn't fetching data. Debug the API call
+and verify the endpoint is working.
+```
+
+### Issue 4: Styling Doesn't Match Existing Components
+**Cause:** Claude didn't reference existing components
+**Fix:** Be more specific:
+```
+Update Analytics.jsx styling to match the styles used in
+LabelManager.jsx. Use the same card and badge patterns.
+```
 
 ## Bonus Challenges
 
 If you finish early:
 
-### Bonus 1: Add Label Search
-Add a search bar to filter labels by name in LabelManager
+### Bonus 1: Auto-Refresh
+Ask Claude:
+```
+Add auto-refresh to the analytics dashboard.
+Update stats every 30 seconds automatically.
+```
 
-### Bonus 2: Add Label Statistics
-Show count of tasks using each label (e.g., "Bug (3)")
+### Bonus 2: Empty States
+Ask Claude:
+```
+Add empty state messages to analytics when there's no data.
+Show helpful guidance like "Create your first task to see analytics!"
+```
 
-### Bonus 3: Add Bulk Label Actions
-Add "Apply label to all selected tasks" functionality
+### Bonus 3: Trend Indicators
+Ask Claude:
+```
+Add trend indicators showing if task counts are increasing or decreasing
+compared to the last time analytics were viewed.
+```
 
 ## Key Takeaways
 
 After this exercise, you should understand:
 
-1. **When Composer shines:** Multi-file, coordinated changes
-2. **Prompt specificity:** Clear requirements = better results
-3. **File context:** Composer understands relationships between files
-4. **Iterative refinement:** You can follow up to fix issues
-5. **Code review is critical:** Always review Composer's changes
+1. **Planning enables autonomy**: Good plan = Claude can implement independently
+2. **Context engineering matters**: `.claude/CONTEXT.md` guides Claude's decisions
+3. **Phase-by-phase works**: Breaking into phases enables validation
+4. **Claude learns from code**: Existing patterns influence new code
+5. **Iterative refinement**: You can ask Claude to improve/fix incrementally
 
-## Cursor Composer vs CMD+K
+## Claude Code Workflow Comparison
 
-| Feature | CMD+K (Inline) | CMD+I (Composer) |
-|---------|----------------|------------------|
-| Scope | Single file | Multiple files |
-| Speed | Very fast | Moderate |
-| Context | Current file | Whole project |
-| Best for | Small edits | Features |
-| Review | Inline diff | Multi-file panel |
+### Without Plan/Context (Traditional)
+```
+You: "Add analytics"
+Claude: "What analytics? Where? What data?"
+You: "Show task counts and label usage"
+Claude: "Where should I add this? What format?"
+You: "In a new component, use the existing API pattern"
+Claude: "Which pattern? Can you show an example?"
+[...many rounds of back-and-forth...]
+```
 
-## What's Next?
+### With Plan/Context (This Exercise)
+```
+You: "Implement analytics dashboard from PLAN.md"
+Claude: *reads plan, reads context, analyzes code*
+"I'll implement in 3 phases. Starting with backend analytics API
+following the route pattern from tasks.js. Proceed?"
+You: "Yes"
+Claude: *implements Phase 1*
+"Phase 1 done. Test: /api/analytics returns task statistics. Continue?"
+You: "Yes"
+[...smooth autonomous execution...]
+```
 
-This showed how Cursor Composer handles multi-file features. In the next demo (demo-4), you'll use **Claude Code** for even more complex enhancements with planning and autonomous agents!
+## What Makes This Different?
+
+| Aspect | Cursor Composer | Claude Code |
+|--------|-----------------|-------------|
+| You provide | Detailed instructions | High-level goal + plan |
+| AI reads | Current context | Plan + context + codebase |
+| Implementation | One-shot attempt | Phase-by-phase with validation |
+| Testing | Manual | Autonomous (optional) |
+| Debugging | Manual | Autonomous (optional) |
+| Learning | Limited | Learns patterns as it goes |
+
+## Real-World Application
+
+This workflow scales to production:
+
+1. **Create detailed PLAN.md** for complex features
+2. **Maintain .claude/CONTEXT.md** with project conventions
+3. **Use Claude Code** for implementation
+4. **Review phase-by-phase** rather than big-bang changes
+5. **Iterate** based on Claude's suggestions
+
+## Next Steps
+
+Congratulations! You've completed all 4 workshop demos. You now know:
+
+1. **ChatGPT** - Planning and brainstorming
+2. **Cursor CMD+K** - Quick single-file edits
+3. **Cursor Composer** - Multi-file features
+4. **Claude Code** - Complex features with planning
+
+**Choose the right tool for each task!**
 
 ---
 
-**Pro Tip:** If Composer's first attempt isn't perfect:
-1. Don't accept the changes yet
-2. Add a follow-up message: "The filter isn't working, please fix the API query parameter parsing"
-3. Composer will refine its changes before applying them
+**Pro Tip**: For your next project:
+1. Create `.claude/CONTEXT.md` on day 1
+2. Update it as patterns emerge
+3. Write PLAN.md before big features
+4. Let Claude Code handle the implementation
+5. Review and iterate
+
+This approach scales from workshops to production systems!

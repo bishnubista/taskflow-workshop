@@ -36,13 +36,13 @@ function App() {
       </div>
 
       <div style={{ padding: '1rem', background: '#d1ecf1', borderRadius: '8px', marginBottom: '2rem' }}>
-        <h3 style={{ margin: '0 0 0.5rem 0', color: '#0c5460' }}>Branch: demo-3-cursor-composer</h3>
+        <h3 style={{ margin: '0 0 0.5rem 0', color: '#0c5460' }}>Branch: demo-4-claude-enhancement</h3>
         <p style={{ margin: 0, color: '#0c5460' }}>
-          ✓ Full Labels feature implemented
+          ✓ Context engineering with .claude/CONTEXT.md
           <br />
-          ✓ Multi-file implementation with Cursor Composer
+          ✓ Feature planning with PLAN.md
           <br />
-          ✓ See TASK.md for hands-on exercise: Add label colors!
+          ✓ See TASK.md for hands-on exercise: Build Analytics Dashboard!
         </p>
       </div>
 
