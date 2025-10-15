@@ -1,22 +1,20 @@
-# Demo 4: Complex Features with Claude Code
+# Demo 2: Quick Edits with Cursor CMD+K
 
-Learn how to use Claude Code's planning mode and context engineering for complex features.
+Learn how to use Cursor's inline AI editing for quick, focused changes.
 
 ## What You'll Learn
 
-Use Claude Code to implement an Analytics Dashboard using PLAN.md and .claude/CONTEXT.md - perfect for complex, multi-phase features.
+Use Cursor CMD+K to add a "Clear Completed" button - perfect for single-file, focused edits.
 
 ## What's in This Branch
 
-✅ **Context engineering files** (already created)
-- `.claude/CONTEXT.md` - Project architecture and conventions
-- `.claude/README.md` - How context engineering works
-- `PLAN.md` - Analytics Dashboard feature specification
+✅ **Working foundation** (from demo-1)
+- Basic task CRUD (Create, Read)
+- User management
+- Task assignment
+- Backend API + Frontend UI
 
-✅ **Complete app** (from demos 1-3)
-- Labels CRUD feature
-- Task management
-- User assignment
+⚠️ **No new features yet** - this branch has the same code as demo-1. The exercise is to ADD a new feature using Cursor CMD+K.
 
 ## Quick Start
 
@@ -36,52 +34,42 @@ Open http://localhost:5173
 
 ## Hands-On Exercise
 
-See **[TASK.md](./TASK.md)** for the complete step-by-step exercise (20 minutes).
+See **[TASK.md](./TASK.md)** for the complete step-by-step exercise (5 minutes).
 
-**Your task:** Implement the Analytics Dashboard in 3 phases using Claude Code's plan mode
+**Your task:** Add a "Clear Completed" button using Cursor CMD+K
 
 ## Learning Resources
 
-- **[BRANCH_NOTES.md](./BRANCH_NOTES.md)** - Why Claude Code, when to use it, tool comparison
-- **[TASK.md](./TASK.md)** - Detailed exercise with phase-by-phase implementation
-- **[PLAN.md](./PLAN.md)** - Analytics feature specification
-- **[.claude/CONTEXT.md](./.claude/CONTEXT.md)** - Project context for AI
+- **[BRANCH_NOTES.md](./BRANCH_NOTES.md)** - When to use CMD+K, workflow tips
+- **[TASK.md](./TASK.md)** - Detailed exercise with step-by-step instructions
 
-## What's Different from Demo 3?
+## What's Different from Demo 1?
 
-- **Demo 3:** You provide detailed instructions to Cursor Composer
-- **Demo 4:** Claude reads PLAN.md + CONTEXT.md and proposes the approach
+- **Demo 1:** ChatGPT for planning (no code generation)
+- **Demo 2:** Cursor CMD+K for implementation (inline AI editing)
 
-**Key difference:** Autonomous implementation with planning
+**Key difference:** Now you're writing code with AI, not just planning
 
-## Choosing the Right Tool
+## CMD+K Quick Reference
 
 ```
-Simple edit (1 file)?
-  → Cursor CMD+K (Demo 2)
-
-Feature across 2-5 files, clear requirements?
-  → Cursor Composer (Demo 3)
-
-Complex feature, needs planning, >5 files?
-  → Claude Code (Demo 4)
-
-Brainstorming/ideation only?
-  → ChatGPT (Demo 1)
+1. Highlight code you want to modify
+2. Press CMD+K (or CTRL+K on Windows)
+3. Type what you want: "Add a Clear Completed button"
+4. Review suggestion
+5. Accept (Enter) or reject (Esc)
 ```
 
 ## Next Step
 
-Congratulations! You've completed all 4 workshop demos.
-
-Checkout the bonus branch for browser automation:
+After completing the exercise, move to demo-3 for multi-file features:
 
 ```bash
-git checkout bonus-mcp-chrome
+git checkout demo-3-cursor-composer
 ```
 
 ---
 
-**Branch Focus:** Claude Code planning mode & context engineering
-**Exercise Time:** 20 minutes
-**Bonus Branch:** `bonus-mcp-chrome` (MCP browser automation)
+**Branch Focus:** Cursor CMD+K for single-file edits
+**Exercise Time:** 5 minutes
+**Next Branch:** `demo-3-cursor-composer` (multi-file features)
