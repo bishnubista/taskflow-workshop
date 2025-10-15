@@ -122,12 +122,30 @@ Each branch builds on the previous one, adding complexity and demonstrating diff
 ## Quick Start
 
 ### Prerequisites
+
+**Before starting the workshop**, ensure you have all required tools installed.
+
+📋 **See [PREREQUISITES.md](./PREREQUISITES.md)** for complete installation instructions (macOS & Windows).
+
+**Quick verification:**
+```bash
+# macOS/Linux
+./scripts/check-prerequisites.sh
+
+# Windows (PowerShell)
+.\scripts\check-prerequisites.ps1
+```
+
+**Required tools:**
 - Node.js 18+ installed
 - Git installed
 - One of these AI tools:
   - [ChatGPT](https://chat.openai.com) (free account)
   - [Cursor IDE](https://cursor.com) (download and install)
-  - [Claude Code](https://claude.com/claude-code) (CLI or VS Code extension)
+  - [Claude Code](https://claude.com/claude-code) (CLI)
+
+**Optional (for MCP bonus demo):**
+- Google Chrome browser
 
 ### Running the Workshop
 
@@ -228,9 +246,13 @@ See `docs/CONDUCTOR-GUIDE.md` for:
 ```
 workshop/
 ├── README.md                    ← You are here
+├── PREREQUISITES.md             ← Installation guide (macOS & Windows)
 ├── PLAN.md                      ← (demo-4) Analytics feature plan
 ├── TASK.md                      ← Current branch exercise
 ├── BRANCH_NOTES.md              ← Current branch learnings
+├── scripts/
+│   ├── check-prerequisites.sh   ← Verification script (macOS/Linux)
+│   └── check-prerequisites.ps1  ← Verification script (Windows)
 ├── .claude/
 │   ├── CONTEXT.md               ← (demo-4) Project context
 │   └── README.md                ← (demo-4) Context guide
