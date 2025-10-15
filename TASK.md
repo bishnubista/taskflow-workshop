@@ -1,142 +1,196 @@
-# Exercise: Add "Clear Completed" with Cursor CMD+K
+# Exercise: Enhance Labels with Cursor Composer
 
-**Time:** 5 minutes
-**Tool:** Cursor CMD+K (inline edit)
-**Difficulty:** Easy
+**Time:** 10 minutes
+**Tool:** Cursor Composer (CMD+I)
+**Difficulty:** Medium
 
 ## Context
 
-You have a working task management app. Users can create tasks and mark them as done, but there's no way to bulk-delete completed tasks. Let's add a "Clear Completed" button!
+You have a working Labels feature that allows creating, editing, and deleting labels. However, the UI could be more polished and the labels aren't yet integrated with tasks. Let's use Cursor Composer to enhance it across multiple files!
 
 ## Your Task
 
-Add a "Clear Completed" button to the TaskList component that:
-1. Shows a count of completed tasks (e.g., "Clear Completed (3)")
-2. Only appears when there are completed tasks
-3. Removes all tasks with `status: 'done'`
-4. Shows a confirmation dialog before deleting
+Choose ONE of these enhancements to implement using Cursor Composer:
 
-## Why Cursor CMD+K?
+### Option A: Add Label Filtering to Tasks (Recommended)
+Add the ability to filter tasks by label in the TaskList component:
+1. Add a label filter dropdown above the task list
+2. Update the backend API to support `?label=label-id` query parameter
+3. Wire up the filter to refresh tasks when changed
 
-This is perfect for CMD+K because:
-- ✅ Single file change (TaskList.jsx)
-- ✅ Small, focused feature
-- ✅ Clear requirements
+### Option B: Show Labels on Tasks
+Display labels as colored badges on each task:
+1. Add a label selector to TaskForm (multi-select)
+2. Display selected labels on each task in TaskList
+3. Fetch label details and show as colored badges
+
+### Option C: Add Label Presets
+Add common label presets for quick creation:
+1. Add a "Quick Add" section with preset buttons (Bug, Feature, Enhancement)
+2. Clicking a preset creates the label with predefined colors
+3. Update backend if needed for bulk label creation
+
+## Why Cursor Composer?
+
+This is perfect for Composer because:
+- ✅ Changes span multiple files (frontend + backend)
+- ✅ Components need to be coordinated
+- ✅ Clear requirements with defined scope
 
 ## Step-by-Step Guide
 
-### Step 1: Open the File
-```bash
-# Open in Cursor
-frontend/src/components/TaskList.jsx
+### Step 1: Open Composer
+Press `CMD+I` (Mac) or `CTRL+I` (Windows/Linux)
+- This opens the floating Composer window
+- Or use `CMD+Shift+I` for full-screen mode
+
+### Step 2: Write Your Prompt
+
+For **Option A** (Label Filtering):
+```
+Add label filtering to the task list:
+1. Add a dropdown in TaskList.jsx to select a label
+2. Update backend GET /api/tasks to accept ?label=label-id query parameter
+3. Filter tasks by the selected label_ids array
+4. Show "All Labels" option to clear the filter
+5. Fetch labels list to populate the dropdown
 ```
 
-### Step 2: Highlight the Return Statement
-Find the `return (` section with the task list UI. Highlight the entire JSX block.
-
-### Step 3: Use CMD+K
-Press `CMD+K` (or `CTRL+K` on Windows), then type:
-
+For **Option B** (Show Labels on Tasks):
 ```
-Add a "Clear Completed" button above the task list that:
-- Shows count of completed tasks
-- Only appears if there are completed tasks
-- Confirms before deleting
-- Filters out tasks with status 'done' from the tasks array
+Show labels on tasks as colored badges:
+1. Add label selector (checkboxes) to TaskForm.jsx
+2. Include label_ids when creating tasks
+3. In TaskList.jsx, fetch label details for each task
+4. Display labels as colored badges below task title
+5. Use the same badge styling from LabelManager
 ```
 
-### Step 4: Review & Accept
-Cursor will suggest changes. Review them:
-- Does it add the button?
-- Does it filter completed tasks?
-- Does it show a confirmation?
+For **Option C** (Label Presets):
+```
+Add quick-add label presets to LabelManager:
+1. Add a "Quick Add" section with 3 preset buttons above the form
+2. Presets: Bug (red #ef4444), Feature (blue #3b82f6), Enhancement (green #10b981)
+3. Clicking a preset creates the label immediately
+4. Show feedback when preset is added
+5. Hide presets that already exist
+```
 
-If yes, press **Enter** to accept. If no, press **Esc** and try rephrasing.
+### Step 3: Review Composer's Plan
+Composer will show you:
+- Which files it will modify
+- What changes it will make to each file
+- A preview of the code changes
+
+**Important:** Read through the proposed changes!
+
+### Step 4: Accept or Modify
+- Click **"Accept All"** to apply all changes
+- Or click individual files to accept/reject specific changes
+- You can add follow-up prompts if needed
 
 ### Step 5: Test It
-1. Start the app: `npm run dev` (if not already running)
-2. Create a few tasks
-3. Mark some as "Done"
-4. Click "Clear Completed"
-5. Confirm the dialog
-6. Verify completed tasks are removed
+1. Make sure both backend and frontend are running
+2. Test the new feature:
+   - For Option A: Try filtering tasks by label
+   - For Option B: Add labels to a task and see them displayed
+   - For Option C: Quick-add a preset label
+3. Fix any issues with follow-up Composer prompts
 
 ## Expected Result
 
-You should see something like:
-
+### Option A: Label Filtering
 ```
 ┌─────────────────────────────────────┐
-│ Clear Completed (3)                 │ ← New button
+│ Filter by: [All Labels ▼]          │ ← New dropdown
 └─────────────────────────────────────┘
 
+Tasks matching selected label shown below...
+```
+
+### Option B: Labels on Tasks
+```
 ┌─────────────────────────────────────┐
-│ ☐ Buy groceries         [To Do]    │
-│ ☑ Write documentation   [Done]     │ ← Will be removed
-│ ☐ Review pull requests  [In Progr] │
-│ ☑ Fix bug #123          [Done]     │ ← Will be removed
+│ Buy groceries                       │
+│ [Bug] [Urgent]                      │ ← Colored badges
+│ Assigned: Sarah  |  Due: Oct 20    │
+└─────────────────────────────────────┘
+```
+
+### Option C: Label Presets
+```
+┌─────────────────────────────────────┐
+│ Quick Add: [Bug] [Feature] [Enhancement] │ ← Preset buttons
 └─────────────────────────────────────┘
 ```
 
 ## Common Issues
 
-### Issue 1: Button Appears Even with No Completed Tasks
-**Fix:** Add a conditional render:
-```jsx
-{completedCount > 0 && (
-  <button onClick={handleClearCompleted}>
-    Clear Completed ({completedCount})
-  </button>
-)}
+### Issue 1: Composer Changes Too Many Files
+**Fix:** Be more specific in your prompt. Mention exact file names:
+```
+Only modify TaskList.jsx and backend/src/routes/tasks.js
 ```
 
-### Issue 2: No Confirmation Dialog
-**Fix:** Use `window.confirm()`:
-```javascript
-const handleClearCompleted = () => {
-  if (window.confirm(`Delete ${completedCount} completed tasks?`)) {
-    setTasks(tasks.filter(task => task.status !== 'done'));
-  }
-};
+### Issue 2: Backend Changes Don't Include Validation
+**Fix:** Add to your prompt:
+```
+Add proper validation and error handling in the backend
 ```
 
-### Issue 3: Tasks Reappear on Refresh
-**Expected!** This app uses in-memory storage. If you want persistence, that's a demo-3 exercise.
+### Issue 3: Frontend Doesn't Handle Errors
+**Fix:** Follow up with:
+```
+Add error handling in the frontend for when the API call fails
+```
+
+### Issue 4: Changes Break Existing Functionality
+**Fix:** Use git to see what changed:
+```bash
+git diff
+```
+Then ask Composer to fix specific issues.
 
 ## Bonus Challenges
 
-If you finish early, try these:
+If you finish early:
 
-### Bonus 1: Add Styling
-Make the button look like a danger action:
-```css
-background: #dc3545;
-color: white;
-border: none;
-padding: 8px 16px;
-```
+### Bonus 1: Add Label Search
+Add a search bar to filter labels by name in LabelManager
 
-### Bonus 2: Add Animation
-Show a toast notification: "3 tasks cleared!"
+### Bonus 2: Add Label Statistics
+Show count of tasks using each label (e.g., "Bug (3)")
 
-### Bonus 3: Backend Integration
-Update the backend to add a `DELETE /api/tasks/completed` endpoint.
+### Bonus 3: Add Bulk Label Actions
+Add "Apply label to all selected tasks" functionality
 
 ## Key Takeaways
 
 After this exercise, you should understand:
-1. **When to use CMD+K:** Single-file, focused changes
-2. **Prompt clarity matters:** Specific instructions = better results
-3. **AI suggestions need review:** Always check before accepting
-4. **Iteration is fast:** If first suggestion isn't perfect, try again
+
+1. **When Composer shines:** Multi-file, coordinated changes
+2. **Prompt specificity:** Clear requirements = better results
+3. **File context:** Composer understands relationships between files
+4. **Iterative refinement:** You can follow up to fix issues
+5. **Code review is critical:** Always review Composer's changes
+
+## Cursor Composer vs CMD+K
+
+| Feature | CMD+K (Inline) | CMD+I (Composer) |
+|---------|----------------|------------------|
+| Scope | Single file | Multiple files |
+| Speed | Very fast | Moderate |
+| Context | Current file | Whole project |
+| Best for | Small edits | Features |
+| Review | Inline diff | Multi-file panel |
 
 ## What's Next?
 
-This was a simple, single-file change. In the next demo (demo-3), you'll use **Cursor Composer** to build the full Labels feature across multiple files!
+This showed how Cursor Composer handles multi-file features. In the next demo (demo-4), you'll use **Claude Code** for even more complex enhancements with planning and autonomous agents!
 
 ---
 
-**Pro Tip:** If CMD+K doesn't give you the right result, try:
-- Being more specific in your prompt
-- Breaking the task into smaller steps
-- Highlighting less code (smaller context = more focused suggestions)
+**Pro Tip:** If Composer's first attempt isn't perfect:
+1. Don't accept the changes yet
+2. Add a follow-up message: "The filter isn't working, please fix the API query parameter parsing"
+3. Composer will refine its changes before applying them

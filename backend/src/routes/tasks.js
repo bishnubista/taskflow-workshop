@@ -80,7 +80,7 @@ router.get('/:id', (req, res) => {
 // POST /api/tasks - Create new task
 router.post('/', (req, res) => {
   try {
-    const { title, description, assignee_id, creator_id, due_date } = req.body;
+    const { title, description, assignee_id, creator_id, due_date, label_ids } = req.body;
 
     // Validation
     if (!title || title.trim().length === 0) {
@@ -134,6 +134,7 @@ router.post('/', (req, res) => {
       creator_id,
       creator,
       due_date: due_date || null,
+      label_ids: label_ids || [],
       created_at: now,
       updated_at: now,
       completed_at: null

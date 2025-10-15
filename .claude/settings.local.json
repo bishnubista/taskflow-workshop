@@ -6,7 +6,10 @@
       "Bash(git commit:*)",
       "Bash(git checkout:*)",
       "Bash(git tag:*)",
-      "Bash(git merge:*)"
+      "Bash(git merge:*)",
+      "WebFetch(domain:docs.cursor.com)",
+      "WebFetch(domain:cursor.com)",
+      "WebSearch"
     ],
     "deny": [],
     "ask": []

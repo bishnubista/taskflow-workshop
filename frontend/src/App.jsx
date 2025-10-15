@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
+import LabelManager from './components/LabelManager';
 
 function App() {
   const [health, setHealth] = useState(null);
@@ -35,13 +36,13 @@ function App() {
       </div>
 
       <div style={{ padding: '1rem', background: '#d1ecf1', borderRadius: '8px', marginBottom: '2rem' }}>
-        <h3 style={{ margin: '0 0 0.5rem 0', color: '#0c5460' }}>Branch: demo-1-chatgpt-planning</h3>
+        <h3 style={{ margin: '0 0 0.5rem 0', color: '#0c5460' }}>Branch: demo-3-cursor-composer</h3>
         <p style={{ margin: 0, color: '#0c5460' }}>
-          ✓ Working task app (Create and Read)
+          ✓ Full Labels feature implemented
           <br />
-          ✓ ChatGPT planning docs in /docs
+          ✓ Multi-file implementation with Cursor Composer
           <br />
-          ✓ See TASK.md for hands-on exercise
+          ✓ See TASK.md for hands-on exercise: Add label colors!
         </p>
       </div>
 
@@ -56,6 +57,7 @@ function App() {
         )}
       </div>
 
+      <LabelManager />
       <TaskForm onTaskCreated={handleTaskCreated} />
       <TaskList ref={taskListRef} />
     </div>
