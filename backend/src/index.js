@@ -1,5 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import taskRoutes from './routes/tasks.js';
+import userRoutes from './routes/users.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,8 +15,9 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'TaskFlow API is running' });
 });
 
-// Routes will be added here
-// app.use('/api/tasks', taskRoutes);
+// API Routes
+app.use('/api/tasks', taskRoutes);
+app.use('/api/users', userRoutes);
 
 // 404 handler
 app.use((req, res) => {
