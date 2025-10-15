@@ -49,6 +49,28 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
     $allInstalled = $false
 }
 
+# Check GitHub CLI
+if (Get-Command gh -ErrorAction SilentlyContinue) {
+    try {
+        $ghVersion = gh --version 2>&1 | Select-Object -First 1
+        Write-Host "✅ GitHub CLI: $ghVersion" -ForegroundColor Green
+
+        # Check GitHub auth status
+        $ghAuthStatus = gh auth status 2>&1
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "   ✅ Authenticated with GitHub" -ForegroundColor Green
+        } else {
+            Write-Host "   ⚠️  Warning: Not authenticated. Run: gh auth login" -ForegroundColor Yellow
+        }
+    } catch {
+        Write-Host "✅ GitHub CLI: Installed" -ForegroundColor Green
+    }
+} else {
+    Write-Host "❌ GitHub CLI: Not installed" -ForegroundColor Red
+    Write-Host "   Install with: choco install gh (Windows) or see PREREQUISITES.md" -ForegroundColor Yellow
+    $allInstalled = $false
+}
+
 # Check Claude Code
 if (Get-Command claude -ErrorAction SilentlyContinue) {
     try {

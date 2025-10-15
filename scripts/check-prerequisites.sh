@@ -51,6 +51,23 @@ else
     all_installed=false
 fi
 
+# Check GitHub CLI
+if command -v gh &> /dev/null; then
+    gh_version=$(gh --version 2>&1 | head -n 1)
+    echo "✅ GitHub CLI: $gh_version"
+
+    # Check GitHub auth status
+    if gh auth status &> /dev/null; then
+        echo "   ✅ Authenticated with GitHub"
+    else
+        echo "   ⚠️  Warning: Not authenticated. Run: gh auth login"
+    fi
+else
+    echo "❌ GitHub CLI: Not installed"
+    echo "   Install with: brew install gh (macOS) or see PREREQUISITES.md"
+    all_installed=false
+fi
+
 # Check Claude Code
 if command -v claude &> /dev/null; then
     claude_version=$(claude --version 2>&1 | head -n 1)

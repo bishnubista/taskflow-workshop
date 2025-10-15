@@ -7,11 +7,12 @@ This guide will help you install all required tools for the TaskFlow AI Coding W
 You'll need to install:
 - **Node.js** (v18 or higher) - JavaScript runtime
 - **Git** - Version control
+- **GitHub CLI** - GitHub command-line tool
 - **Claude Code** - AI coding assistant CLI
 - **Cursor** - AI-powered code editor
 - **Google Chrome** - For MCP browser automation (bonus demo)
 
-**Time to complete:** ~15-20 minutes
+**Time to complete:** ~20-25 minutes
 
 ---
 
@@ -64,7 +65,26 @@ git config --global user.email "your.email@example.com"
 git --version
 ```
 
-### 4. Install Claude Code
+### 4. Install GitHub CLI
+
+```bash
+# Install GitHub CLI
+brew install gh
+
+# Verify installation
+gh --version
+
+# Authenticate with GitHub (follow prompts)
+gh auth login
+```
+
+After running `gh auth login`:
+1. Select "GitHub.com"
+2. Choose "HTTPS" as preferred protocol
+3. Authenticate via web browser or paste token
+4. Verify: `gh auth status`
+
+### 5. Install Claude Code
 
 ```bash
 # Install Claude Code CLI
@@ -77,7 +97,7 @@ claude --version
 claude login
 ```
 
-### 5. Install Cursor
+### 6. Install Cursor
 
 ```bash
 # Download and install Cursor
@@ -92,7 +112,7 @@ After installation, open Cursor and:
 2. Sign in with your account
 3. Configure AI model preferences
 
-### 6. Install Google Chrome (for MCP bonus demo)
+### 7. Install Google Chrome (for MCP bonus demo)
 
 ```bash
 # Install Chrome
@@ -102,66 +122,23 @@ brew install --cask google-chrome
 ls -la "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 ```
 
-### 7. Verification Script (macOS)
+### 8. Verification Script (macOS)
 
 Run this script to verify all installations:
 
 ```bash
-#!/bin/bash
-echo "=== Workshop Prerequisites Check ==="
-echo ""
-
-# Check Node.js
-if command -v node &> /dev/null; then
-    echo "✅ Node.js: $(node --version)"
-else
-    echo "❌ Node.js: Not installed"
-fi
-
-# Check npm
-if command -v npm &> /dev/null; then
-    echo "✅ npm: $(npm --version)"
-else
-    echo "❌ npm: Not installed"
-fi
-
-# Check Git
-if command -v git &> /dev/null; then
-    echo "✅ Git: $(git --version)"
-else
-    echo "❌ Git: Not installed"
-fi
-
-# Check Claude Code
-if command -v claude &> /dev/null; then
-    echo "✅ Claude Code: $(claude --version)"
-else
-    echo "❌ Claude Code: Not installed"
-fi
-
-# Check Cursor
-if [ -d "/Applications/Cursor.app" ]; then
-    echo "✅ Cursor: Installed"
-else
-    echo "❌ Cursor: Not installed"
-fi
-
-# Check Chrome
-if [ -f "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" ]; then
-    echo "✅ Google Chrome: Installed"
-else
-    echo "❌ Google Chrome: Not installed"
-fi
-
-echo ""
-echo "=== Check Complete ==="
+# Run the verification script
+./scripts/check-prerequisites.sh
 ```
 
-Save as `check-prerequisites.sh` and run:
-```bash
-chmod +x check-prerequisites.sh
-./check-prerequisites.sh
-```
+The script will check:
+- ✅ Node.js (v18+)
+- ✅ npm
+- ✅ Git (with configuration)
+- ✅ GitHub CLI (with auth status)
+- ✅ Claude Code
+- ✅ Cursor
+- ✅ Google Chrome
 
 ---
 
@@ -215,7 +192,33 @@ git config --global user.name "Your Name"
 git config --global user.email "your.email@example.com"
 ```
 
-### 3. Install Claude Code
+### 3. Install GitHub CLI
+
+**Option A: Using Installer**
+```powershell
+# Download and run GitHub CLI installer
+Start-Process "https://cli.github.com"
+```
+
+**Option B: Using Chocolatey**
+```powershell
+# Install GitHub CLI
+choco install gh -y
+
+# Verify installation
+gh --version
+
+# Authenticate with GitHub (follow prompts)
+gh auth login
+```
+
+After running `gh auth login`:
+1. Select "GitHub.com"
+2. Choose "HTTPS" as preferred protocol
+3. Authenticate via web browser or paste token
+4. Verify: `gh auth status`
+
+### 4. Install Claude Code
 
 ```powershell
 # Install Claude Code CLI
@@ -228,7 +231,7 @@ claude --version
 claude login
 ```
 
-### 4. Install Cursor
+### 5. Install Cursor
 
 **Option A: Direct Download**
 ```powershell
@@ -248,7 +251,7 @@ After installation:
 3. Sign in with your account
 4. Configure AI model preferences
 
-### 5. Install Google Chrome (for MCP bonus demo)
+### 6. Install Google Chrome (for MCP bonus demo)
 
 **Option A: Direct Download**
 ```powershell
@@ -265,83 +268,28 @@ choco install googlechrome -y
 Test-Path "C:\Program Files\Google\Chrome\Application\chrome.exe"
 ```
 
-### 6. Verification Script (Windows)
+### 7. Verification Script (Windows)
 
-Save this as `check-prerequisites.ps1` and run in PowerShell:
+Run the verification script in PowerShell:
 
 ```powershell
-Write-Host "=== Workshop Prerequisites Check ===" -ForegroundColor Cyan
-Write-Host ""
-
-# Check Node.js
-if (Get-Command node -ErrorAction SilentlyContinue) {
-    $nodeVersion = node --version
-    Write-Host "✅ Node.js: $nodeVersion" -ForegroundColor Green
-} else {
-    Write-Host "❌ Node.js: Not installed" -ForegroundColor Red
-}
-
-# Check npm
-if (Get-Command npm -ErrorAction SilentlyContinue) {
-    $npmVersion = npm --version
-    Write-Host "✅ npm: $npmVersion" -ForegroundColor Green
-} else {
-    Write-Host "❌ npm: Not installed" -ForegroundColor Red
-}
-
-# Check Git
-if (Get-Command git -ErrorAction SilentlyContinue) {
-    $gitVersion = git --version
-    Write-Host "✅ Git: $gitVersion" -ForegroundColor Green
-} else {
-    Write-Host "❌ Git: Not installed" -ForegroundColor Red
-}
-
-# Check Claude Code
-if (Get-Command claude -ErrorAction SilentlyContinue) {
-    $claudeVersion = claude --version
-    Write-Host "✅ Claude Code: $claudeVersion" -ForegroundColor Green
-} else {
-    Write-Host "❌ Claude Code: Not installed" -ForegroundColor Red
-}
-
-# Check Cursor
-$cursorPaths = @(
-    "$env:LOCALAPPDATA\Programs\Cursor\Cursor.exe",
-    "$env:ProgramFiles\Cursor\Cursor.exe"
-)
-$cursorInstalled = $false
-foreach ($path in $cursorPaths) {
-    if (Test-Path $path) {
-        $cursorInstalled = $true
-        break
-    }
-}
-if ($cursorInstalled) {
-    Write-Host "✅ Cursor: Installed" -ForegroundColor Green
-} else {
-    Write-Host "❌ Cursor: Not installed" -ForegroundColor Red
-}
-
-# Check Chrome
-$chromePath = "C:\Program Files\Google\Chrome\Application\chrome.exe"
-if (Test-Path $chromePath) {
-    Write-Host "✅ Google Chrome: Installed" -ForegroundColor Green
-} else {
-    Write-Host "❌ Google Chrome: Not installed" -ForegroundColor Red
-}
-
-Write-Host ""
-Write-Host "=== Check Complete ===" -ForegroundColor Cyan
+# Run the verification script
+.\scripts\check-prerequisites.ps1
 ```
 
-Run the script:
+The script will check:
+- ✅ Node.js (v18+)
+- ✅ npm
+- ✅ Git (with configuration)
+- ✅ GitHub CLI (with auth status)
+- ✅ Claude Code
+- ✅ Cursor
+- ✅ Google Chrome
+
+If you get an execution policy error:
 ```powershell
 # Allow script execution (run as Administrator)
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-
-# Run verification
-.\check-prerequisites.ps1
 ```
 
 ---
