@@ -35,13 +35,13 @@ function App() {
       </div>
 
       <div style={{ padding: '1rem', background: '#d1ecf1', borderRadius: '8px', marginBottom: '2rem' }}>
-        <h3 style={{ margin: '0 0 0.5rem 0', color: '#0c5460' }}>Branch: demo-2-cursor-basic</h3>
+        <h3 style={{ margin: '0 0 0.5rem 0', color: '#0c5460' }}>Branch: demo-1-chatgpt-planning</h3>
         <p style={{ margin: 0, color: '#0c5460' }}>
-          ✓ Basic CRUD operations: Create and Read tasks
+          ✓ Working task app (Create and Read)
           <br />
-          ✓ Task assignment to team members
+          ✓ ChatGPT planning docs in /docs
           <br />
-          ✓ Simple status display
+          ✓ See TASK.md for hands-on exercise
         </p>
       </div>
 
