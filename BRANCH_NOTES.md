@@ -1,49 +1,56 @@
-# Branch: demo-1-chatgpt-planning
+# Branch: demo-2-cursor-basic
 
 ## What This Branch Demonstrates
 
-**ChatGPT for product planning** + **Basic CRUD implementation** - showing how to plan features with AI before building.
+**Cursor CMD+K for quick feature additions** - showing how to use inline AI edits to add a simple feature quickly.
 
 ## What's in This Branch
 
-### Working Application
+### Same Foundation as Demo-1
 - ✅ Basic task CRUD (Create, Read)
 - ✅ User management
 - ✅ Task assignment
 - ✅ Backend API (Express)
 - ✅ Frontend UI (React)
 
-### ChatGPT Planning Docs
-- ✅ `docs/labels-feature-plan.md` - ChatGPT brainstorm for Labels feature
-- ✅ `docs/labels-api-design.md` - API design for Labels
-- ✅ Shows planning workflow before coding
+### No New Features Yet
+This branch has the same code as demo-1. The exercise is to ADD a new feature using Cursor.
 
 ## Workshop Flow
 
-This is **Phase 1** of the progressive workshop:
-1. **demo-1** ← You are here: Plan with ChatGPT + basic app
-2. demo-2: Add features with Cursor
+This is **Phase 2** of the progressive workshop:
+1. demo-1: Plan with ChatGPT + basic app ← Built on this
+2. **demo-2** ← You are here: Quick feature with Cursor CMD+K
 3. demo-3: Build Labels with Cursor Composer
 4. demo-4: Enhance with Claude Code
 
 ## Hands-On Exercise
 
 See `TASK.md` in this branch for the attendee exercise:
-- Use ChatGPT to plan a "Task Priority" feature
-- Compare your plan to the Labels plan provided
+- Use Cursor CMD+K to add a "Clear Completed" button
+- Learn inline AI editing workflow
 - Time: 5 minutes
 
 ## Key Learning
 
-✅ **Always plan before coding**
-- ChatGPT helps structure your thoughts
-- Creates clear requirements and API contracts
-- Saves debugging time later
+### When to Use Cursor CMD+K
+✅ **Good for:**
+- Single-file edits
+- Small feature additions (button, form field)
+- Quick refactoring
+- Bug fixes in one function
 
-❌ **Don't just start coding**
-- Without a plan, features drift
-- Hard to estimate or track progress
-- More bugs and rework
+❌ **Not ideal for:**
+- Multi-file features (use Composer instead)
+- Large refactors across codebase
+- Features requiring planning
+
+### CMD+K Workflow
+1. Highlight the code you want to modify
+2. Press `CMD+K` (or `CTRL+K` on Windows)
+3. Type what you want: "Add a Clear Completed button"
+4. Cursor suggests changes
+5. Accept (Enter) or reject (Esc)
 
 ## How to Run
 
@@ -59,15 +66,15 @@ Open http://localhost:5173
 
 ## Next Step
 
-After planning your feature with ChatGPT:
+After completing the exercise:
 ```bash
-git checkout demo-2-cursor-basic
+git checkout demo-3-cursor-composer
 ```
 
-See how to implement features quickly with Cursor!
+See how to build a full Labels feature with Cursor Composer!
 
 ---
 
 **Branch created:** 2025-10-15
-**Demonstrates:** ChatGPT planning + working foundation
-**Next branch:** `demo-2-cursor-basic`
+**Demonstrates:** Cursor CMD+K for quick feature additions
+**Next branch:** `demo-3-cursor-composer`
