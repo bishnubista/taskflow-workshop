@@ -1,86 +1,91 @@
-# TaskFlow Workshop - AI-Assisted Development Demo
+# Demo 3: Multi-File Features with Cursor Composer
 
-A multi-branch demo project showcasing how to effectively use AI coding tools (ChatGPT, Cursor, Claude Code) for full-stack development.
+Learn how to use Cursor Composer for features that span multiple files.
 
-## Workshop Structure
+## What You'll Learn
 
-This repository contains 8 branches, each demonstrating different AI tool capabilities and workflows:
+Use Cursor Composer (CMD+I) to enhance the Labels feature - perfect for coordinated changes across backend and frontend.
 
-### Branch Overview
+## What's in This Branch
 
-| Branch | Demo Focus | Key Learnings |
-|--------|-----------|---------------|
-| `main` | Clean starter | Starting point with minimal structure |
-| `demo-1-chatgpt-planning` | AI brainstorming | Using ChatGPT for product planning and API design |
-| `demo-2-cursor-basic` | Cursor basics | Inline suggestions and multi-file edits |
-| `demo-3-cursor-fullstack` | Cursor full-stack | Complete CRUD with frontend/backend |
-| `demo-4-claude-planning` | Claude planning | Plan mode, context engineering, agents |
-| `demo-5-claude-mcp` | MCP integration | Database persistence via Model Context Protocol |
-| `demo-6-claude-advanced` | Advanced agents | Full agentic workflow with custom agents |
-| `demo-7-production-ready` | Production code | Error handling, tests, CI/CD, Docker |
+✅ **New: Complete Labels Feature** (already implemented)
+- Backend: Full Labels CRUD API (`/api/labels`)
+- Frontend: LabelManager component with color picker
+- Multi-file implementation example
+
+✅ **Foundation** (from demos 1-2)
+- Task CRUD with label support
+- User management
+- Task assignment
 
 ## Quick Start
 
 ```bash
-# Clone the repository
-git clone <your-repo-url>
-cd workshop
+# Terminal 1: Start backend
+cd backend
+npm install
+npm run dev
 
-# Switch to any demo branch
-git checkout demo-1-chatgpt-planning
-
-# Follow branch-specific README for setup
+# Terminal 2: Start frontend
+cd frontend
+npm install
+npm run dev
 ```
 
-## Workshop Navigation
+Open http://localhost:5173
 
-### For Presenters
-1. Start with `main` branch for introduction
-2. Show `demo-1-chatgpt-planning` for brainstorming workflow
-3. Live code with Cursor starting from `demo-2-cursor-basic`
-4. Transition to Claude Code with `demo-4-claude-planning`
-5. Show advanced capabilities with `demo-5/6` branches
-6. Reference `demo-7-production-ready` for production patterns
+## Hands-On Exercise
 
-### For Attendees
-Each branch has:
-- **README.md** - Setup instructions and what's demonstrated
-- **BRANCH_NOTES.md** - Key takeaways and learning points
-- **Working code** - Fully functional at each stage
+See **[TASK.md](./TASK.md)** for the complete step-by-step exercise (10 minutes).
 
-## Project Tech Stack
-
-**Backend:**
-- Node.js + Express
-- SQLite (in later branches)
-- Jest for testing
-
-**Frontend:**
-- React 18
-- Vite
-- Tailwind CSS (added in later branches)
-
-**AI Tool Setup:**
-- ChatGPT (web interface)
-- Cursor (IDE)
-- Claude Code (CLI)
-- MCP servers (for Claude Code)
+**Your task:** Choose ONE enhancement to add using Cursor Composer:
+- Option A: Add label filtering to tasks
+- Option B: Show labels as colored badges on tasks
+- Option C: Add label presets for quick creation
 
 ## Learning Resources
 
-- [ChatGPT Apps](https://help.openai.com/en/articles/8555545-chatgpt-apps)
-- [Model Context Protocol](https://modelcontextprotocol.io/)
-- [Claude Code Documentation](https://docs.claude.com/claude-code)
-- [Cursor Documentation](https://docs.cursor.com/)
+- **[BRANCH_NOTES.md](./BRANCH_NOTES.md)** - When to use Composer, multi-file workflow
+- **[TASK.md](./TASK.md)** - Detailed exercise with 3 enhancement options
 
-## Workshop Timeline (90 minutes)
+## What's Different from Demo 2?
 
-- **0-10 min**: Intro + ChatGPT brainstorming (`demo-1`)
-- **10-25 min**: MCP explanation + context engineering theory
-- **25-45 min**: Cursor live demo (`demo-2` → `demo-3`)
-- **45-85 min**: Claude Code live demo (`demo-4` → `demo-6`)
-- **85-90 min**: Q&A + wrap-up
+- **Demo 2:** Cursor CMD+K for single-file edits
+- **Demo 3:** Cursor Composer for multi-file features (backend + frontend)
 
-## License
+**Key difference:** Composer coordinates changes across multiple related files
 
-MIT - Free for educational use
+## Composer Quick Reference
+
+```
+1. Press CMD+I (or CTRL+I on Windows)
+2. Describe your feature: "Add label filtering to tasks"
+3. Composer identifies files to change
+4. Review proposed changes
+5. Accept all or cherry-pick changes
+```
+
+## Example: What Composer Did Here
+
+The Labels feature required changes in **5 files**:
+1. `backend/src/routes/labels.js` - CRUD API
+2. `backend/src/index.js` - Route registration
+3. `backend/src/routes/tasks.js` - Add label_ids field
+4. `frontend/src/components/LabelManager.jsx` - UI component
+5. `frontend/src/App.jsx` - Render component
+
+Composer handled all of this in one conversation!
+
+## Next Step
+
+After completing the exercise, move to demo-4 for planning and autonomous implementation:
+
+```bash
+git checkout demo-4-claude-enhancement
+```
+
+---
+
+**Branch Focus:** Cursor Composer for multi-file features
+**Exercise Time:** 10 minutes
+**Next Branch:** `demo-4-claude-enhancement` (planning & context engineering)
