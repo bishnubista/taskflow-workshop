@@ -1,86 +1,205 @@
-# TaskFlow Workshop - AI-Assisted Development Demo
+# Demo 1: Brainstorming with ChatGPT
 
-A multi-branch demo project showcasing how to effectively use AI coding tools (ChatGPT, Cursor, Claude Code) for full-stack development.
+This branch demonstrates how to use ChatGPT for feature planning and API design **before** writing any code.
 
-## Workshop Structure
+## What You'll Learn
 
-This repository contains 8 branches, each demonstrating different AI tool capabilities and workflows:
+- How to brainstorm features with ChatGPT
+- How to create API specifications with AI
+- Why planning saves debugging time later
+- How to structure your prompts for better results
 
-### Branch Overview
+## What's Included
 
-| Branch | Demo Focus | Key Learnings |
-|--------|-----------|---------------|
-| `main` | Clean starter | Starting point with minimal structure |
-| `demo-1-chatgpt-planning` | AI brainstorming | Using ChatGPT for product planning and API design |
-| `demo-2-cursor-basic` | Cursor basics | Inline suggestions and multi-file edits |
-| `demo-3-cursor-fullstack` | Cursor full-stack | Complete CRUD with frontend/backend |
-| `demo-4-claude-planning` | Claude planning | Plan mode, context engineering, agents |
-| `demo-5-claude-mcp` | MCP integration | Database persistence via Model Context Protocol |
-| `demo-6-claude-advanced` | Advanced agents | Full agentic workflow with custom agents |
-| `demo-7-production-ready` | Production code | Error handling, tests, CI/CD, Docker |
+This branch contains:
+- ✅ Working TaskFlow app (basic task CRUD)
+- ✅ Example planning docs created with ChatGPT:
+  - `docs/labels-feature-plan.md` - Feature brainstorm
+  - `docs/labels-api-design.md` - API specification
 
 ## Quick Start
 
+### 1. Run the Application
+
 ```bash
-# Clone the repository
-git clone <your-repo-url>
-cd workshop
+# Terminal 1: Start backend
+cd backend
+npm install
+npm run dev
 
-# Switch to any demo branch
-git checkout demo-1-chatgpt-planning
-
-# Follow branch-specific README for setup
+# Terminal 2: Start frontend
+cd frontend
+npm install
+npm run dev
 ```
 
-## Workshop Navigation
+Open http://localhost:5173 to see the basic TaskFlow app.
 
-### For Presenters
-1. Start with `main` branch for introduction
-2. Show `demo-1-chatgpt-planning` for brainstorming workflow
-3. Live code with Cursor starting from `demo-2-cursor-basic`
-4. Transition to Claude Code with `demo-4-claude-planning`
-5. Show advanced capabilities with `demo-5/6` branches
-6. Reference `demo-7-production-ready` for production patterns
+## Brainstorming Workflow with ChatGPT
 
-### For Attendees
-Each branch has:
-- **README.md** - Setup instructions and what's demonstrated
-- **BRANCH_NOTES.md** - Key takeaways and learning points
-- **Working code** - Fully functional at each stage
+### Step 1: Open ChatGPT
 
-## Project Tech Stack
+Go to https://chat.openai.com (free account works fine)
 
-**Backend:**
-- Node.js + Express
-- SQLite (in later branches)
-- Jest for testing
+### Step 2: Provide Context
 
-**Frontend:**
-- React 18
-- Vite
-- Tailwind CSS (added in later branches)
+Start by explaining your project:
 
-**AI Tool Setup:**
-- ChatGPT (web interface)
-- Cursor (IDE)
-- Claude Code (CLI)
-- MCP servers (for Claude Code)
+```
+I'm building a task management app called TaskFlow. It currently has:
+- Tasks with title and status
+- Users who can be assigned to tasks
 
-## Learning Resources
+I want to add a new feature but need help planning it first.
+```
 
-- [ChatGPT Apps](https://help.openai.com/en/articles/8555545-chatgpt-apps)
-- [Model Context Protocol](https://modelcontextprotocol.io/)
-- [Claude Code Documentation](https://docs.claude.com/claude-code)
-- [Cursor Documentation](https://docs.cursor.com/)
+### Step 3: Brainstorm the Feature
 
-## Workshop Timeline (90 minutes)
+Ask ChatGPT to help you explore the feature:
 
-- **0-10 min**: Intro + ChatGPT brainstorming (`demo-1`)
-- **10-25 min**: MCP explanation + context engineering theory
-- **25-45 min**: Cursor live demo (`demo-2` → `demo-3`)
-- **45-85 min**: Claude Code live demo (`demo-4` → `demo-6`)
-- **85-90 min**: Q&A + wrap-up
+```
+I want to add "Labels" to tasks so users can categorize and filter them.
 
-## License
+Can you help me think through:
+1. What data structure should labels have?
+2. How should labels work with tasks (one label per task? multiple?)
+3. What operations do users need (create, assign, remove)?
+4. Any edge cases I should consider?
+```
 
-MIT - Free for educational use
+**See `docs/labels-feature-plan.md`** for an example ChatGPT response.
+
+### Step 4: Design the API
+
+Once you have a plan, ask for API specifications:
+
+```
+Based on that labels feature plan, can you design the REST API endpoints?
+
+For each endpoint, include:
+- HTTP method and path
+- Request body/parameters
+- Response format
+- Status codes
+
+Keep it simple - we're using Express and in-memory storage (no database yet).
+```
+
+**See `docs/labels-api-design.md`** for an example ChatGPT response.
+
+### Step 5: Review and Iterate
+
+ChatGPT's first response might not be perfect. Refine with follow-ups:
+
+```
+Good, but can we simplify the color picker?
+Just use a preset list of colors instead of custom hex values.
+```
+
+```
+What if two users try to create a label with the same name?
+Should we prevent duplicates or allow them?
+```
+
+## Hands-On Exercise
+
+Try planning a "Task Priority" feature with ChatGPT:
+
+**Your Task:** Add priority levels (Low, Medium, High) to tasks
+
+**Steps:**
+1. Open ChatGPT
+2. Give it context about TaskFlow
+3. Ask it to help you design the priority feature
+4. Get API endpoint specifications
+5. Ask follow-up questions to refine the plan
+
+**Time:** 5-10 minutes
+
+## Key Takeaways
+
+### ✅ DO: Always Plan First
+- ChatGPT helps structure your thoughts
+- Creates clear requirements and API contracts
+- Identifies edge cases before coding
+- Provides a reference during implementation
+
+### ❌ DON'T: Jump Straight to Code
+- Without a plan, features drift
+- Hard to estimate time or track progress
+- More bugs discovered during testing
+- Harder to onboard team members
+
+## Example Prompts That Work Well
+
+**For feature brainstorming:**
+```
+I'm building [app description]. I want to add [feature].
+What should I consider? What are the edge cases?
+```
+
+**For API design:**
+```
+Design REST API endpoints for [feature].
+Include request/response formats and status codes.
+Keep it simple for [your tech stack].
+```
+
+**For refinement:**
+```
+That's good, but [specific concern].
+How would you adjust the design?
+```
+
+**For validation:**
+```
+I'm worried about [edge case].
+How should the API handle this?
+```
+
+## What ChatGPT Is Good At
+
+✅ Brainstorming feature ideas
+✅ Designing API contracts
+✅ Identifying edge cases
+✅ Explaining tradeoffs
+✅ Creating documentation structure
+
+## What ChatGPT Is NOT Good At
+
+❌ Writing production code (use Cursor or Claude Code for that)
+❌ Understanding your specific codebase
+❌ Making decisions for you (it suggests, you decide)
+❌ Knowing your business requirements
+
+## Files to Explore
+
+```
+workshop/
+├── docs/
+│   ├── labels-feature-plan.md    ← ChatGPT brainstorm example
+│   └── labels-api-design.md      ← ChatGPT API spec example
+├── backend/
+│   └── src/
+│       ├── routes/tasks.js       ← Basic CRUD already implemented
+│       └── routes/users.js       ← User management already done
+└── frontend/
+    └── src/
+        ├── TaskForm.jsx          ← Form for creating tasks
+        └── TaskList.jsx          ← List of tasks with status
+```
+
+## Next Steps
+
+After planning your feature with ChatGPT, move to the next demo to implement it:
+
+```bash
+git checkout demo-2-cursor-basic
+```
+
+You'll learn how to use Cursor to quickly implement the features you planned!
+
+---
+
+**Branch Focus:** ChatGPT for planning and API design
+**Next Branch:** `demo-2-cursor-basic` (implementation with Cursor)
