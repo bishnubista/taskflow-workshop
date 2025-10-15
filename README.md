@@ -1,86 +1,109 @@
-# TaskFlow Workshop - AI-Assisted Development Demo
+# Demo 4: Complex Features with Claude Code
 
-A multi-branch demo project showcasing how to effectively use AI coding tools (ChatGPT, Cursor, Claude Code) for full-stack development.
+Learn how to use Claude Code's planning mode and context engineering for complex, multi-phase features.
 
-## Workshop Structure
+## What You'll Learn
 
-This repository contains 8 branches, each demonstrating different AI tool capabilities and workflows:
+Use Claude Code to implement an Analytics Dashboard - perfect for complex features that benefit from planning and autonomous implementation.
 
-### Branch Overview
+## What's in This Branch
 
-| Branch | Demo Focus | Key Learnings |
-|--------|-----------|---------------|
-| `main` | Clean starter | Starting point with minimal structure |
-| `demo-1-chatgpt-planning` | AI brainstorming | Using ChatGPT for product planning and API design |
-| `demo-2-cursor-basic` | Cursor basics | Inline suggestions and multi-file edits |
-| `demo-3-cursor-fullstack` | Cursor full-stack | Complete CRUD with frontend/backend |
-| `demo-4-claude-planning` | Claude planning | Plan mode, context engineering, agents |
-| `demo-5-claude-mcp` | MCP integration | Database persistence via Model Context Protocol |
-| `demo-6-claude-advanced` | Advanced agents | Full agentic workflow with custom agents |
-| `demo-7-production-ready` | Production code | Error handling, tests, CI/CD, Docker |
+✅ **New: Context Engineering Files** (already created)
+- `.claude/CONTEXT.md` - Project architecture and coding conventions
+- `.claude/README.md` - How context engineering works
+- `PLAN.md` - Analytics Dashboard feature specification (3 phases)
+
+✅ **Complete app** (from demos 1-3)
+- Labels CRUD feature
+- Task management
+- User assignment
 
 ## Quick Start
 
 ```bash
-# Clone the repository
-git clone <your-repo-url>
-cd workshop
+# Terminal 1: Start backend
+cd backend
+npm install
+npm run dev
 
-# Switch to any demo branch
-git checkout demo-1-chatgpt-planning
-
-# Follow branch-specific README for setup
+# Terminal 2: Start frontend
+cd frontend
+npm install
+npm run dev
 ```
 
-## Workshop Navigation
+Open http://localhost:5173
 
-### For Presenters
-1. Start with `main` branch for introduction
-2. Show `demo-1-chatgpt-planning` for brainstorming workflow
-3. Live code with Cursor starting from `demo-2-cursor-basic`
-4. Transition to Claude Code with `demo-4-claude-planning`
-5. Show advanced capabilities with `demo-5/6` branches
-6. Reference `demo-7-production-ready` for production patterns
+## Hands-On Exercise
 
-### For Attendees
-Each branch has:
-- **README.md** - Setup instructions and what's demonstrated
-- **BRANCH_NOTES.md** - Key takeaways and learning points
-- **Working code** - Fully functional at each stage
+See **[TASK.md](./TASK.md)** for the complete step-by-step exercise (20 minutes).
 
-## Project Tech Stack
-
-**Backend:**
-- Node.js + Express
-- SQLite (in later branches)
-- Jest for testing
-
-**Frontend:**
-- React 18
-- Vite
-- Tailwind CSS (added in later branches)
-
-**AI Tool Setup:**
-- ChatGPT (web interface)
-- Cursor (IDE)
-- Claude Code (CLI)
-- MCP servers (for Claude Code)
+**Your task:** Implement the Analytics Dashboard in 3 phases using Claude Code
+1. Phase 1: Backend analytics API
+2. Phase 2: Frontend dashboard component
+3. Phase 3: Integration and testing
 
 ## Learning Resources
 
-- [ChatGPT Apps](https://help.openai.com/en/articles/8555545-chatgpt-apps)
-- [Model Context Protocol](https://modelcontextprotocol.io/)
-- [Claude Code Documentation](https://docs.claude.com/claude-code)
-- [Cursor Documentation](https://docs.cursor.com/)
+- **[BRANCH_NOTES.md](./BRANCH_NOTES.md)** - Why Claude Code, when to use it, tool comparison
+- **[TASK.md](./TASK.md)** - Detailed exercise with phase-by-phase implementation
+- **[PLAN.md](./PLAN.md)** - Analytics feature specification
+- **[.claude/CONTEXT.md](./.claude/CONTEXT.md)** - Project context for AI
 
-## Workshop Timeline (90 minutes)
+## What's Different from Demo 3?
 
-- **0-10 min**: Intro + ChatGPT brainstorming (`demo-1`)
-- **10-25 min**: MCP explanation + context engineering theory
-- **25-45 min**: Cursor live demo (`demo-2` → `demo-3`)
-- **45-85 min**: Claude Code live demo (`demo-4` → `demo-6`)
-- **85-90 min**: Q&A + wrap-up
+- **Demo 3:** You provide detailed instructions to Cursor Composer
+- **Demo 4:** Claude reads PLAN.md + CONTEXT.md and proposes the approach
 
-## License
+**Key difference:** Autonomous implementation with planning and context awareness
 
-MIT - Free for educational use
+## Claude Code Workflow
+
+```
+1. Start Claude Code CLI (or use VS Code extension)
+2. Ask: "Read PLAN.md and review the analytics dashboard feature"
+3. Claude analyzes plan, context, and existing code
+4. Ask: "Implement Phase 1 from PLAN.md"
+5. Claude implements backend API autonomously
+6. Continue with Phases 2 and 3
+```
+
+## Planning Mode Benefits
+
+- **Autonomous execution**: Claude implements features with minimal guidance
+- **Context awareness**: Follows existing patterns and conventions
+- **Phase-by-phase validation**: Test after each phase, not just at the end
+- **Intelligent suggestions**: Claude identifies issues and improvements
+- **Code understanding**: Learns from existing codebase
+
+## Choosing the Right Tool
+
+```
+Simple edit (1 file)?
+  → Cursor CMD+K (Demo 2)
+
+Feature across 2-5 files, clear requirements?
+  → Cursor Composer (Demo 3)
+
+Complex feature, needs planning, >5 files?
+  → Claude Code (Demo 4)
+
+Brainstorming/ideation only?
+  → ChatGPT (Demo 1)
+```
+
+## Next Step
+
+Congratulations! You've completed all 4 workshop demos.
+
+For a bonus challenge, checkout the MCP browser automation demo:
+
+```bash
+git checkout bonus-mcp-chrome
+```
+
+---
+
+**Branch Focus:** Claude Code planning mode & context engineering
+**Exercise Time:** 20 minutes
+**Bonus Branch:** `bonus-mcp-chrome` (Chrome DevTools MCP integration)
