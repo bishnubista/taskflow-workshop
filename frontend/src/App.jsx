@@ -1,8 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import TaskForm from './components/TaskForm';
+import TaskList from './components/TaskList';
 
 function App() {
   const [health, setHealth] = useState(null);
   const [loading, setLoading] = useState(true);
+  const taskListRef = useRef(null);
 
   useEffect(() => {
     fetch('http://localhost:3000/health')
@@ -17,30 +20,44 @@ function App() {
       });
   }, []);
 
-  return (
-    <div style={{ padding: '2rem', fontFamily: 'system-ui' }}>
-      <h1>TaskFlow</h1>
-      <p>Workshop Demo - AI-Assisted Development</p>
+  const handleTaskCreated = () => {
+    // Trigger refresh in TaskList component
+    if (taskListRef.current) {
+      taskListRef.current.fetchTasks();
+    }
+  };
 
-      <div style={{ marginTop: '2rem', padding: '1rem', background: '#f0f0f0', borderRadius: '8px' }}>
-        <h2>API Status</h2>
+  return (
+    <div style={{ padding: '2rem', fontFamily: 'system-ui', maxWidth: '1200px', margin: '0 auto' }}>
+      <div style={{ marginBottom: '2rem' }}>
+        <h1 style={{ marginBottom: '0.5rem' }}>TaskFlow</h1>
+        <p style={{ color: '#6c757d' }}>Workshop Demo - AI-Assisted Development</p>
+      </div>
+
+      <div style={{ padding: '1rem', background: '#d1ecf1', borderRadius: '8px', marginBottom: '2rem' }}>
+        <h3 style={{ margin: '0 0 0.5rem 0', color: '#0c5460' }}>Branch: demo-2-cursor-basic</h3>
+        <p style={{ margin: 0, color: '#0c5460' }}>
+          ✓ Basic CRUD operations: Create and Read tasks
+          <br />
+          ✓ Task assignment to team members
+          <br />
+          ✓ Simple status display
+        </p>
+      </div>
+
+      <div style={{ padding: '1rem', background: loading ? '#fff3cd' : (health ? '#d1e7dd' : '#f8d7da'), borderRadius: '8px', marginBottom: '2rem' }}>
+        <strong>API Status:</strong>{' '}
         {loading ? (
-          <p>Connecting to API...</p>
+          'Connecting...'
         ) : health ? (
-          <p style={{ color: 'green' }}>✓ {health.message}</p>
+          <span style={{ color: '#0f5132' }}>✓ Connected</span>
         ) : (
-          <p style={{ color: 'red' }}>✗ Failed to connect to API</p>
+          <span style={{ color: '#842029' }}>✗ Disconnected - Start backend with: cd backend && npm run dev</span>
         )}
       </div>
 
-      <div style={{ marginTop: '2rem', padding: '1rem', background: '#fff3cd', borderRadius: '8px' }}>
-        <h3>Current Branch: main</h3>
-        <p>This is the starter skeleton. No task features implemented yet.</p>
-        <ul>
-          <li>Switch to <code>demo-2-cursor-basic</code> for basic CRUD</li>
-          <li>Switch to <code>demo-3-cursor-fullstack</code> for complete CRUD</li>
-        </ul>
-      </div>
+      <TaskForm onTaskCreated={handleTaskCreated} />
+      <TaskList ref={taskListRef} />
     </div>
   );
 }
